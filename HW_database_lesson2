@@ -1,0 +1,24 @@
+create table Genre(
+	id serial primary key,
+	name varchar (20) not null
+);
+
+create table Artist(
+	id serial primary key,
+	genreid integer references Genre(id),
+	name varchar(30) not null
+);
+
+
+create table Album(
+	id serial primary key,
+	artistid integer references Artist(id),
+	album_title varchar(40) not null,
+	release_year date
+);
+
+create table track(
+	id serial primary key,
+	albumid integer references Album(id),
+	track_title varchar(40) not null,
+	len integer check(len < 9999) check(len > 0)
